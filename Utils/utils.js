@@ -1,9 +1,9 @@
-function validateEmail(email) {
+async function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-function validatePassword(password) {
+async function validatePassword(password) {
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   return passwordRegex.test(password);
@@ -25,14 +25,4 @@ async function verifyPassword(inputPassword, hashedPassword) {
   return hashedInputPassword === hashedPassword;
 }
 
-function generateToken() {
-  return crypto.randomUUID();
-}
-
-export {
-  validateEmail,
-  validatePassword,
-  hashPassword,
-  verifyPassword,
-  generateToken,
-};
+export { validateEmail, validatePassword, hashPassword, verifyPassword };
