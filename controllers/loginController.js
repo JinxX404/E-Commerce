@@ -1,4 +1,5 @@
-import AuthService from "../Services/AuthService.js";
+import AuthService from "../services/authService.js";
+
 const loginForm = document.querySelector("form");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -15,8 +16,7 @@ loginForm.addEventListener("submit", async (e) => {
   try {
     await authService.SignIn(user);
     console.log("login.js: user signed in successfully");
-    alert("User logged in successfully");
-    window.location.href = "../index.html";
+    window.location.href = "../pages/home.html";
   } catch (error) {
     console.log(error);
   }

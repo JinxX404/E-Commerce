@@ -1,4 +1,4 @@
-import AuthService from "../Services/AuthService.js";
+import AuthService from "../services/authService.js";
 
 const registerForm = document.querySelector("form");
 const name = document.getElementById("name");

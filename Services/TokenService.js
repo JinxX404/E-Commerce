@@ -1,32 +1,42 @@
-import TokenRepository from "../Repositories/TokenRepository.js";
-import Token from "../Models/Token.js";
+import TokenRepository from "../repositories/tokenRepository.js";
+import Token from "../models/token.js";
 
 class TokenService {
   constructor() {
     this.tokenRepository = new TokenRepository();
   }
-  async createToken(user) {
+  createToken(user) {
     const token = new Token();
     token.setUserId(user.id);
-    await this.tokenRepository.save(token);
+    this.tokenRepository.save(token);
+    // alert("Token Saved");
     return token;
   }
-  async deleteToken(token) {
-    await this.tokenRepository.delete(token);
+  deleteToken(token) {
+    this.tokenRepository.delete(token);
   }
-  async getToken(token) {
-    return await this.tokenRepository.findByToken(token);
+  getToken(token) {
+    return this.tokenRepository.findByToken(token);
   }
-  async getAllTokens() {
-    return await this.tokenRepository.getAll();
+  getAllTokens() {
+    return this.tokenRepository.getAll();
   }
-  async updateToken(token) {
-    await this.tokenRepository.update(token);
+  updateToken(token) {
+    this.tokenRepository.update(token);
   }
 
-  async isValidToken(token) {
-    const token = await this.tokenRepository.findByToken(token);
+  isValidToken(t) {
+    const token = this.tokenRepository.findByToken(t);
     return token && token.expiresAt > new Date();
+  }
+  getCurrentToken() {
+    return this.tokenRepository.getCurrentToken();
+  }
+  clearCurrentToken() {
+    this.tokenRepository.clearCurrentToken();
+  }
+  setCurrentToken(token) {
+    this.tokenRepository.setCurrentToken(token);
   }
 }
 

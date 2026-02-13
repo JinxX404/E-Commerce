@@ -1,4 +1,4 @@
-import StorageService from "../Infrastructure/StorageService.js";
+import StorageService from "../infrastructure/storageService.js";
 
 class UserRepository {
   constructor() {

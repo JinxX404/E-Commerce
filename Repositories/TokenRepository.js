@@ -1,4 +1,4 @@
-import StorageService from "../Infrastructure/StorageService.js";
+import StorageService from "../infrastructure/storageService.js";
 
 class TokenRepository {
   constructor() {
@@ -27,6 +27,16 @@ class TokenRepository {
       t.token === token.token ? token : t,
     );
     this.storageService.saveToLocalStorage("tokens", updatedTokens);
+  }
+  getCurrentToken() {
+    const token = this.storageService.getFromLocalStorage("authToken");
+    return token;
+  }
+  clearCurrentToken() {
+    this.storageService.saveToLocalStorage("authToken", null);
+  }
+  setCurrentToken(token) {
+    this.storageService.saveToLocalStorage("authToken", token);
   }
 }
 
