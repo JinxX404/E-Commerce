@@ -7,6 +7,7 @@ import StorageService from "./infrastructure/storageService.js";
 import User from "./models/user.js";
 import AuthService from "./services/authService.js";
 import createProductCard from "./components/productCard.js";
+import ProductService from "./services/productService.js";
 
 // const storageService = new StorageService();
 // const user = new User("Moataz", "moatazmuhammedmuhammed@gmail.com", "1234");
@@ -24,4 +25,8 @@ const authService = new AuthService();
 // document.querySelector(".products").appendChild(productCard);
 // document.querySelector(".products").appendChild(productCard2);
 // document.querySelector(".products").appendChild(productCard3);
-console.log(authService.getCurrentUser());
+// console.log(authService.getCurrentUser());
+
+// const products = await new ProductService().getAllProducts();
+
+// console.log(products);

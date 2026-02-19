@@ -95,12 +95,8 @@ class AuthService {
     if (!raw) return null;
 
     const tokenObj = this.tokenService.getToken(raw);
-
-    if (!this.tokenService.isValidToken(tokenObj.token)) {
-      this.tokenService.deleteToken(tokenObj);
-      return null;
-    }
-    return this.userRepository.findById(tokenObj.userId);
+    let user = this.userRepository.findById(tokenObj.userId);
+    return user;
   }
 }
 
