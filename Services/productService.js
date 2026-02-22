@@ -19,6 +19,12 @@ class ProductService {
     return paginatedProducts;
   }
 
+  async getCategories() {
+    const products = await this.getAllProducts();
+    const categories = new Set(products.map((p) => p.category));
+    return Array.from(categories);
+  }
+
   // async getProductsByCategoryName(name) {
   //   return await this.productRepository.findByCategoryName(name);
   // }

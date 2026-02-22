@@ -77,11 +77,48 @@ class HomeController {
     }
   }
 
+  viewProduct() {
+    const viewProductBtns = document.querySelectorAll(".view-product-btn");
+    console.log(viewProductBtns);
+    if (!viewProductBtns) return;
+    viewProductBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const productId = btn.dataset.id;
+        window.location.href = `../pages/product.html?id=${productId}`;
+      });
+    });
+  }
+
+  async loadCategories() {
+    const categoriesContainer = document.getElementById("categories-container");
+    if (!categoriesContainer) return;
+
+    const categories = await this.productService.getCategories();
+
+    // The 'All Products' option is already in the HTML.
+    // We just append the dynamic ones.
+    const categoriesHTML = categories
+      .map(
+        (category) => `
+      <label class="flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors">
+        <input class="sr-only" name="category" type="radio" value="${category}" />
+        <span class="material-icons-outlined mr-3 text-lg">category</span>
+        ${category}
+      </label>
+    `,
+      )
+      .join("");
+
+    categoriesContainer.insertAdjacentHTML("beforeend", categoriesHTML);
+  }
+
   async init() {
     this.userWelcome();
     this.logout();
     this.setupPagination();
+    await this.loadCategories();
     await this.loadHomeProducts();
+    this.viewProduct();
   }
 }
 

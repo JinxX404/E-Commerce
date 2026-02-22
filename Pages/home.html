@@ -106,36 +106,13 @@
         <div
           class="sticky top-24 bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm">
           <h3 class="font-semibold text-lg mb-4 text-gray-900 dark:text-white">Categories</h3>
-          <div class="flex flex-col space-y-2">
+          <div id="categories-container" class="flex flex-col space-y-2">
             <label class="flex items-center p-2 rounded-lg cursor-pointer bg-primary/10 text-primary font-medium">
-              <input checked="" class="sr-only" name="category" type="radio" />
+              <input checked="" class="sr-only" name="category" type="radio" value="all" />
               <span class="material-icons-outlined mr-3 text-lg">grid_view</span>
               All Products
             </label>
-            <label
-              class="flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors">
-              <input class="sr-only" name="category" type="radio" />
-              <span class="material-icons-outlined mr-3 text-lg">checkroom</span>
-              Clothes
-            </label>
-            <label
-              class="flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors">
-              <input class="sr-only" name="category" type="radio" />
-              <span class="material-icons-outlined mr-3 text-lg">brush</span>
-              Makeup
-            </label>
-            <label
-              class="flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors">
-              <input class="sr-only" name="category" type="radio" />
-              <span class="material-icons-outlined mr-3 text-lg">smartphone</span>
-              Phones
-            </label>
-            <label
-              class="flex items-center p-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors">
-              <input class="sr-only" name="category" type="radio" />
-              <span class="material-icons-outlined mr-3 text-lg">menu_book</span>
-              Books
-            </label>
+            <!-- Dynamic categories will be loaded here -->
           </div>
         </div>
       </aside>
