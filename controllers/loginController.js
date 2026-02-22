@@ -14,7 +14,7 @@ loginForm.addEventListener("submit", async (e) => {
   };
   console.log("login.js: user object created");
   try {
-    await authService.SignIn(user);
+    await authService.signIn(user);
     console.log("login.js: user signed in successfully");
     window.location.href = "../pages/home.html";
   } catch (error) {

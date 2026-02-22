@@ -15,7 +15,7 @@ class AuthService {
     this.tokenService = new TokenService();
     this.tokenRepository = new TokenRepository();
   }
-  async Register(user) {
+  async register(user) {
     const userExists = this.userRepository.findByEmail(user.email);
     if (userExists) {
       throw new Error("User already exists");
@@ -35,25 +35,19 @@ class AuthService {
     }
   }
 
-  async SignIn(user) {
+  async signIn(user) {
     const userExists = this.userRepository.findByEmail(user.email);
     if (!userExists) {
       throw new Error("User not found");
     }
     if (await verifyPassword(user.password, userExists.hashedPassword)) {
       const token = this.tokenService.createToken(userExists);
-      // alert("Token Created");
-      console.log(
-        "SignIn Function on AuthService: User signed in successfully",
-      );
-
-      // localStorage.setItem("authToken", JSON.stringify(tokenObj.token));
       this.tokenService.setCurrentToken(token.token);
     } else {
       throw new Error("Invalid password");
     }
   }
-  async SignOut() {
+  async signOut() {
     this.tokenService.deleteToken(this.tokenService.getCurrentToken());
     this.tokenService.clearCurrentToken();
   }

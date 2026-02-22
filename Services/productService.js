@@ -13,7 +13,6 @@ class ProductService {
     return await this.productRepository.getProductByID(id);
   }
 
-  // pagination
   async getProductsByPage(page, limit) {
     const products = await this.getAllProducts();
     const paginatedProducts = products.slice((page - 1) * limit, page * limit);
