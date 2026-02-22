@@ -8,6 +8,7 @@ class HomeController {
     this.productService = new ProductService();
     this.currentPage = 1;
     this.limit = 6;
+    this.currentCategory = null;
   }
 
   userWelcome() {
@@ -33,10 +34,16 @@ class HomeController {
   }
 
   async loadHomeProducts() {
-    const products = await this.productService.getProductsByPage(
+    const response = await this.productService.getProductsByPage(
       this.currentPage,
       this.limit,
+      this.currentCategory,
     );
+
+    // Fallback in case ProductService returns the old array format instead of {products, totalCount}
+    const products = response.products || response;
+    const totalCount = response.totalCount || products.length;
+
     const productsContainer = document.querySelector(".products");
 
     if (!productsContainer) return;
@@ -52,8 +59,11 @@ class HomeController {
     const pageDisplay = document.getElementById("current-page");
 
     if (prevBtn) prevBtn.disabled = this.currentPage === 1;
-    if (nextBtn) nextBtn.disabled = products.length < this.limit;
+    if (nextBtn) nextBtn.disabled = this.currentPage * this.limit >= totalCount;
     if (pageDisplay) pageDisplay.textContent = this.currentPage;
+
+    // Attach listener to newly rendered product cards
+    this.viewProduct();
   }
 
   setupPagination() {
@@ -89,6 +99,20 @@ class HomeController {
     });
   }
 
+  setupCategories() {
+    const categoryRadios = document.querySelectorAll('input[name="category"]');
+    if (!categoryRadios.length) return;
+
+    categoryRadios.forEach((radio) => {
+      radio.addEventListener("change", (e) => {
+        const val = e.target.value;
+        this.currentCategory = val === "all" ? null : val;
+        this.currentPage = 1;
+        this.loadHomeProducts();
+      });
+    });
+  }
+
   async loadCategories() {
     const categoriesContainer = document.getElementById("categories-container");
     if (!categoriesContainer) return;
@@ -110,6 +134,7 @@ class HomeController {
       .join("");
 
     categoriesContainer.insertAdjacentHTML("beforeend", categoriesHTML);
+    this.setupCategories();
   }
 
   async init() {

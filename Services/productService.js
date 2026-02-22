@@ -3,20 +3,30 @@ import ProductRepository from "../repositories/productRepository.js";
 class ProductService {
   constructor() {
     this.productRepository = new ProductRepository();
+    this.productsCache = null;
   }
 
   async getAllProducts() {
-    return await this.productRepository.getAll();
+    if (!this.productsCache) {
+      this.productsCache = await this.productRepository.getAll();
+    }
+    return this.productsCache || [];
   }
 
   async getProductById(id) {
     return await this.productRepository.getProductByID(id);
   }
 
-  async getProductsByPage(page, limit) {
-    const products = await this.getAllProducts();
+  async getProductsByPage(page, limit, category = null) {
+    let products = await this.getAllProducts();
+    if (category && category !== "all") {
+      products = products.filter((p) => p.category === category);
+    }
     const paginatedProducts = products.slice((page - 1) * limit, page * limit);
-    return paginatedProducts;
+    return {
+      products: paginatedProducts,
+      totalCount: products.length,
+    };
   }
 
   async getCategories() {
