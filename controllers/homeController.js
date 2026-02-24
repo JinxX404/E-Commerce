@@ -13,6 +13,9 @@ class HomeController {
     this.currentPage = 1;
     this.limit = 6;
     this.currentCategory = null;
+    this.currentPriceRange = "all";
+    this.currentSize = "all";
+    this.currentSort = "default";
   }
 
   userWelcome() {
@@ -60,6 +63,9 @@ class HomeController {
       this.currentPage,
       this.limit,
       this.currentCategory,
+      this.currentPriceRange,
+      this.currentSize,
+      this.currentSort,
     );
 
     const products = response.products || response;
@@ -187,6 +193,35 @@ class HomeController {
     });
   }
 
+  async loadFilters() {
+    const sizeFilter = document.getElementById("size-filter");
+    if (!sizeFilter) return;
+
+    const sizes = await this.productService.getAvailableSizes();
+    const sizeHtml = sizes
+      .map((size) => `<option value="${size}">${size}</option>`)
+      .join("");
+    sizeFilter.innerHTML = '<option value="all">Any Size</option>' + sizeHtml;
+  }
+
+  setupFilters() {
+    const priceFilter = document.getElementById("price-filter");
+    const sizeFilter = document.getElementById("size-filter");
+    const sortFilter = document.getElementById("sort-filter");
+
+    const updateProducts = () => {
+      if (priceFilter) this.currentPriceRange = priceFilter.value;
+      if (sizeFilter) this.currentSize = sizeFilter.value;
+      if (sortFilter) this.currentSort = sortFilter.value;
+      this.currentPage = 1;
+      this.loadHomeProducts();
+    };
+
+    if (priceFilter) priceFilter.addEventListener("change", updateProducts);
+    if (sizeFilter) sizeFilter.addEventListener("change", updateProducts);
+    if (sortFilter) sortFilter.addEventListener("change", updateProducts);
+  }
+
   setupCategories() {
     const categoryRadios = document.querySelectorAll('input[name="category"]');
     if (!categoryRadios.length) return;
@@ -264,6 +299,8 @@ class HomeController {
       this.updateCartIcon();
       this.setupPagination();
       await this.loadCategories();
+      await this.loadFilters();
+      this.setupFilters();
       await this.loadHomeProducts();
       this.viewProduct();
       this.quickAdd();
