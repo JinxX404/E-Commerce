@@ -88,7 +88,6 @@ class ProductService {
       }
     });
 
-    // Custom sort for sizes (S, M, L, XL etc.)
     const sizeOrder = ["XS", "S", "M", "L", "XL", "XXL"];
     return Array.from(sizes).sort((a, b) => {
       const indexA = sizeOrder.indexOf(a);
@@ -105,17 +104,6 @@ class ProductService {
     const categories = new Set(products.map((p) => p.category));
     return Array.from(categories);
   }
-
-  // async getProductsByCategoryName(name) {
-  //   return await this.productRepository.findByCategoryName(name);
-  // }
-  // async getProductsByCategoryID(id) {
-  //   return await this.productRepository.findByCategoryID(id);
-  // }
-
-  // async getCategories() {
-  //   return await this.productRepository.getCategories();
-  // }
 }
 
 export default ProductService;

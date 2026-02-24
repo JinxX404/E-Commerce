@@ -57,38 +57,11 @@ class AuthService {
     this.tokenService.deleteToken(this.tokenService.getCurrentToken());
     this.tokenService.clearCurrentToken();
   }
-  // async isAuthenticated() {
-  //   const tokenString = this.tokenService.getCurrentToken();
-  //   // console.log(tokenString);
-  //   if (!tokenString) return false;
-  //   return this.tokenService.isValidToken(tokenString);
-  // }
-  // async getCurrentUser() {
-  //   console.log(
-  //     "getCurrentUser Function on AuthService: User is authenticated",
-  //   );
-  // }
   async getAuthenticatedUser() {
     console.log(
       "getAuthenticatedUser Function on AuthService: User is authenticated",
     );
   }
-
-  // getCurrentUser() {
-  //   const tokenString = this.tokenService.getCurrentToken();
-  //   console.log(tokenString);
-  //   if (!tokenString) return null;
-
-  //   // const tokenObj = this.tokenRepository.findByToken(tokenString);
-  //   // console.log(tokenObj);
-  //   if (!tokenObj) return null;
-
-  //   // optional expiry check (you already have isValidToken in TokenService)
-  //   if (tokenObj.expiresAt && new Date(tokenObj.expiresAt) <= new Date())
-  //     return null;
-
-  //   return this.userRepository.findById(tokenObj.userId);
-  // }
 
   getCurrentUser() {
     const raw = this.tokenService.getCurrentToken();

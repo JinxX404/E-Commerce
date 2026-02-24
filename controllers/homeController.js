@@ -321,10 +321,8 @@ class HomeController {
     const baseUrl = "https://developerapis.vercel.app/";
 
     this.sliderProducts.forEach((product, index) => {
-      // Determine background style. We use a dark gradient overlay.
       const bgImage = `url('${baseUrl + product.image}')`;
 
-      // Create slide
       const slide = document.createElement("div");
       slide.className = "min-w-full h-full relative flex-shrink-0";
       slide.innerHTML = `
@@ -412,7 +410,6 @@ class HomeController {
       });
     });
 
-    // Pause auto-slide on hover
     if (sliderContainer) {
       sliderContainer.addEventListener("mouseenter", () =>
         this.stopAutoSlide(),
@@ -461,13 +458,10 @@ class HomeController {
       await this.loadFilters();
       this.setupFilters();
 
-      // Load hero slider before products to ensure viewProduct btn listeners attach
       await this.loadHeroSlider();
 
       await this.loadHomeProducts();
 
-      // View product attachments need to run again after slider renders
-      // because loadHomeProducts() also calls viewProduct() but slider might render after.
       this.viewProduct();
       this.quickAdd();
     } catch (error) {

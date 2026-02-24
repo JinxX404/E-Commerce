@@ -6,7 +6,6 @@ class NotificationService {
   }
 
   initContainers() {
-    // Toast Container
     this.toastContainer = document.getElementById("toast-container");
     if (!this.toastContainer) {
       this.toastContainer = document.createElement("div");
@@ -16,7 +15,6 @@ class NotificationService {
       document.body.appendChild(this.toastContainer);
     }
 
-    // Loader Container
     this.loaderContainer = document.getElementById("loader-container");
     if (!this.loaderContainer) {
       this.loaderContainer = document.createElement("div");
@@ -35,14 +33,9 @@ class NotificationService {
 
   showToast(message, type = "info", duration = 0) {
     const toast = document.createElement("div");
-
-    // Base styles
     let baseClass =
       "min-w-[300px] flex items-center p-4 rounded-lg shadow-lg border transform transition-all duration-300 translate-y-full opacity-0 pointer-events-auto";
-
     let iconSvg = `<svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
-
-    // Type specific styles
     if (type === "success") {
       baseClass +=
         " bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200";
@@ -71,21 +64,16 @@ class NotificationService {
 
     this.toastContainer.appendChild(toast);
 
-    // Animate in
     requestAnimationFrame(() => {
       toast.classList.remove("translate-y-full", "opacity-0");
     });
 
-    // Calculate dynamic duration based on message length (min 3000ms, max 8000ms)
-    // Roughly 50ms per character
     const readDuration =
       duration || Math.min(Math.max(message.length * 60, 3000), 8000);
-
-    // Auto remove
     if (readDuration > 0) {
       setTimeout(() => {
         toast.classList.add("translate-y-full", "opacity-0");
-        setTimeout(() => toast.remove(), 300); // Wait for transition out
+        setTimeout(() => toast.remove(), 300);
       }, readDuration);
     }
   }

@@ -9,7 +9,6 @@ class TokenService {
     const token = new Token();
     token.setUserId(user.id);
     this.tokenRepository.save(token);
-    // alert("Token Saved");
     return token;
   }
   deleteToken(token) {

@@ -227,7 +227,6 @@ class ProductDetailsController {
         product.image,
       );
 
-      // Optional: Show some feedback to user
       const originalText = addToCartBtn.innerHTML;
       addToCartBtn.innerHTML =
         '<span class="material-icons-outlined mr-2">check</span> Added!';
@@ -240,7 +239,6 @@ class ProductDetailsController {
         addToCartBtn.classList.remove("bg-green-600", "hover:bg-green-700");
       }, 2000);
 
-      // Update cart icon counter if there's one on the page
       this.updateCartIcon();
     });
   }

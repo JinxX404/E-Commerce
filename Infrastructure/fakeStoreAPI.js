@@ -15,21 +15,6 @@ class FakeStoreAPI {
   async getProductById(id) {
     return await this.apiClient.get(this.productsBaseURL + "/" + id);
   }
-
-  // async getProductsByCategoryName(name) {
-  //   return await this.apiClient.get(
-  //     this.productsBaseURL + "/?categorySlug=" + name,
-  //   );
-  // }
-  // async getProductsByCategoryID(id) {
-  //   return await this.apiClient.get(
-  //     this.productsBaseURL + "/?categoryId=" + id,
-  //   );
-  // }
-
-  // async getCategories() {
-  //   return await this.apiClient.get(this.categoriesBaseURL);
-  // }
 }
 
 export default FakeStoreAPI;

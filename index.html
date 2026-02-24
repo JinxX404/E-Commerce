@@ -13,25 +13,21 @@
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 antialiased selection:bg-primary selection:text-white">
+    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 antialiased flex flex-col min-h-screen selection:bg-primary selection:text-white">
 
-    <!-- Clean Navigation -->
     <header
-        class="bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark sticky top-0 z-50 transition-all">
+        class="bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md sticky top-0 z-50 transition-all border-b border-border-light dark:border-border-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
                 <div class="flex items-center gap-2 cursor-pointer">
-                    <div class="bg-primary text-white p-2 rounded-lg">
+                    <div class="bg-primary text-white p-2 rounded-lg shadow-sm">
                         <span class="material-icons-outlined text-xl leading-none">local_mall</span>
                     </div>
                     <span class="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">E-Commercely</span>
                 </div>
-
-                <!-- Action Buttons -->
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-6">
                     <a href="pages/login.html"
-                        class="hidden sm:inline-block px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors">
+                        class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">
                         Log in
                     </a>
                     <a href="pages/register.html"
@@ -43,224 +39,42 @@
         </div>
     </header>
 
-    <main>
-        <!-- Modern Split Hero Section -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8 order-2 md:order-1">
-                    <div
-                        class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <span class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-                        New Collection 2026
-                    </div>
-                    <h1
-                        class="text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-[1.1] tracking-tight">
-                        Curated essentials for your <span class="text-primary italic">modern</span> lifestyle.
-                    </h1>
-                    <p class="text-lg text-text-muted-light dark:text-text-muted-dark max-w-lg leading-relaxed">
-                        We've scoured the globe to bring you high-quality products that blend functionality with
-                        exceptional design. Elevate your everyday.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="pages/home.html"
-                            class="inline-flex justify-center items-center px-8 py-4 rounded-xl bg-primary hover:bg-primary-hover text-white font-semibold text-lg shadow-lg shadow-primary/30 transition-all hover:scale-105">
-                            Browse Collection
-                            <span class="material-icons-outlined ml-2">east</span>
-                        </a>
-                    </div>
-                    <div class="pt-6 border-t border-border-light dark:border-border-dark flex items-center gap-6">
-                        <div class="flex -space-x-3">
-                            <img class="w-10 h-10 rounded-full border-2 border-white dark:border-surface-dark bg-gray-200"
-                                src="https://i.pravatar.cc/100?img=1" alt="User 1">
-                            <img class="w-10 h-10 rounded-full border-2 border-white dark:border-surface-dark bg-gray-200"
-                                src="https://i.pravatar.cc/100?img=2" alt="User 2">
-                            <img class="w-10 h-10 rounded-full border-2 border-white dark:border-surface-dark bg-gray-200"
-                                src="https://i.pravatar.cc/100?img=3" alt="User 3">
-                        </div>
-                        <p class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark">Trusted by <span
-                                class="text-gray-900 dark:text-white font-bold">10,000+</span> customers</p>
-                    </div>
-                </div>
+    <main class="flex-grow flex items-center justify-center relative overflow-hidden">
 
-                <!-- Hero Image with Abstract Shapes -->
-                <div class="relative order-1 md:order-2">
-                    <div class="absolute inset-0 bg-primary/5 rounded-[3rem] transform rotate-3 scale-105"></div>
-                    <div class="absolute inset-0 bg-indigo-500/5 rounded-[3rem] transform -rotate-3 scale-105"></div>
-                    <img src="https://images.unsplash.com/photo-1555529771-835f59fc5efe?q=80&w=1000&auto=format&fit=crop"
-                        alt="Premium Apparel"
-                        class="relative z-10 w-full rounded-[2.5rem] shadow-2xl object-cover h-[500px]" />
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl -z-10"></div>
 
-                    <!-- Floating badge -->
-                    <div
-                        class="absolute bottom-10 -left-6 z-20 bg-surface-light dark:bg-surface-dark p-4 rounded-2xl shadow-xl border border-border-light dark:border-border-dark flex items-center gap-3">
-                        <div class="bg-green-100 text-green-600 p-2 rounded-full">
-                            <span class="material-icons-outlined text-xl">verified</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold text-gray-900 dark:text-white">Authentic Goods</p>
-                            <p class="text-xs text-text-muted-light dark:text-text-muted-dark">100% Quality Guarantee
-                            </p>
-                        </div>
-                    </div>
-                </div>
+        <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <div
+                class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8">
+                <span class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
+                Welcome to E-Commercely
             </div>
-        </section>
 
-        <!-- Dynamic Category Cards using Theme Variables -->
-        <section class="border-t border-border-light dark:border-border-dark bg-white dark:bg-surface-dark py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Shop by Category</h2>
-                    <p class="text-text-muted-light dark:text-text-muted-dark max-w-2xl mx-auto">Find exactly what
-                        you're looking for by exploring our curated collections.</p>
-                </div>
+            <h1
+                class="text-5xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-tight tracking-tight mb-6">
+                Everything you need, <span class="text-primary italic">in one place.</span>
+            </h1>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Category 1 -->
-                    <a href="pages/home.html"
-                        class="group relative rounded-3xl overflow-hidden aspect-[4/3] shadow-md border border-border-light dark:border-border-dark">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop"
-                            alt="Tech"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div
-                            class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-900/90 to-transparent p-6 pt-20">
-                            <h3 class="text-xl font-bold text-white mb-1 drop-shadow">Technology</h3>
-                            <p class="text-primary-100 dark:text-gray-300 text-sm font-medium flex items-center">
-                                Shop Now <span
-                                    class="material-icons-outlined text-sm ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">arrow_forward</span>
-                            </p>
-                        </div>
-                    </a>
+            <p
+                class="text-lg md:text-xl text-text-muted-light dark:text-text-muted-dark leading-relaxed mb-10 max-w-2xl mx-auto">
+                Discover top-quality products at great prices. Shop easily and securely from anywhere.
+            </p>
 
-                    <!-- Category 2 -->
-                    <a href="pages/home.html"
-                        class="group relative rounded-3xl overflow-hidden aspect-[4/3] shadow-md border border-border-light dark:border-border-dark">
-                        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=800&auto=format&fit=crop"
-                            alt="Fashion"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div
-                            class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-900/90 to-transparent p-6 pt-20">
-                            <h3 class="text-xl font-bold text-white mb-1 drop-shadow">Apparel</h3>
-                            <p class="text-primary-100 dark:text-gray-300 text-sm font-medium flex items-center">
-                                Shop Now <span
-                                    class="material-icons-outlined text-sm ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">arrow_forward</span>
-                            </p>
-                        </div>
-                    </a>
-
-                    <!-- Category 3 -->
-                    <a href="pages/home.html"
-                        class="group relative rounded-3xl overflow-hidden aspect-[4/3] shadow-md border border-border-light dark:border-border-dark sm:col-span-2 lg:col-span-1">
-                        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=800&auto=format&fit=crop"
-                            alt="Home"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div
-                            class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gray-900/90 to-transparent p-6 pt-20">
-                            <h3 class="text-xl font-bold text-white mb-1 drop-shadow">Home Essentials</h3>
-                            <p class="text-primary-100 dark:text-gray-300 text-sm font-medium flex items-center">
-                                Shop Now <span
-                                    class="material-icons-outlined text-sm ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">arrow_forward</span>
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter / CTA -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="bg-primary rounded-3xl overflow-hidden relative shadow-2xl">
-                <!-- Graphical blob -->
-                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-black/10 rounded-full blur-3xl"></div>
-
-                <div class="relative z-10 p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
-                    <div class="text-white max-w-xl text-center md:text-left">
-                        <h2 class="text-3xl font-bold mb-4 tracking-tight">Join our community today</h2>
-                        <p class="text-white/80 text-lg">Create a free account to track orders, save wishlists, and
-                            receive exclusive offers.</p>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                        <a href="pages/register.html"
-                            class="px-8 py-4 rounded-xl bg-white text-primary font-bold shadow-lg hover:scale-105 transition-transform text-center whitespace-nowrap">
-                            Create Free Account
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <a href="pages/login.html"
+                class="group inline-flex justify-center items-center px-8 py-4 rounded-xl bg-primary hover:bg-primary-hover text-white font-semibold text-lg shadow-xl shadow-primary/30 transition-all hover:scale-105 hover:-translate-y-1">
+                Log in to Shop
+                <span class="material-icons-outlined ml-2 group-hover:translate-x-1 transition-transform">east</span>
+            </a>
         </section>
     </main>
 
-    <!-- Standard Footer using Theme Variables -->
-    <footer class="bg-surface-light dark:bg-card-dark border-t border-border-light dark:border-border-dark pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                <!-- Branding -->
-                <div class="col-span-1 lg:col-span-1">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="bg-primary text-white p-1.5 rounded-lg">
-                            <span class="material-icons-outlined text-lg leading-none">local_mall</span>
-                        </div>
-                        <span class="text-xl font-bold text-gray-900 dark:text-white">E-Commercely</span>
-                    </div>
-                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">
-                        Delivering the best shopping experience right to your doorstep. Quality products, secure
-                        checkout.
-                    </p>
-                </div>
-
-                <!-- Links -->
-                <div>
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-6 uppercase text-sm tracking-wider">Shop</h3>
-                    <ul class="space-y-4 text-sm text-text-muted-light dark:text-text-muted-dark">
-                        <li><a href="#" class="hover:text-primary transition-colors">All Products</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">New Arrivals</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Sales & Offers</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Gift Cards</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-6 uppercase text-sm tracking-wider">Support
-                    </h3>
-                    <ul class="space-y-4 text-sm text-text-muted-light dark:text-text-muted-dark">
-                        <li><a href="#" class="hover:text-primary transition-colors">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Shipping & Returns</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">FAQ</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Track Order</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-gray-900 dark:text-white mb-6 uppercase text-sm tracking-wider">Legal</h3>
-                    <ul class="space-y-4 text-sm text-text-muted-light dark:text-text-muted-dark">
-                        <li><a href="#" class="hover:text-primary transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div
-                class="border-t border-border-light dark:border-border-dark pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">© 2026 E-Commercely. All rights
-                    reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#"
-                        class="text-text-muted-light hover:text-primary dark:text-text-muted-dark transition-colors"><span
-                            class="material-icons-outlined">facebook</span></a>
-                    <a href="#"
-                        class="text-text-muted-light hover:text-primary dark:text-text-muted-dark transition-colors"><span
-                            class="material-icons-outlined">camera_alt</span></a>
-                    <a href="#"
-                        class="text-text-muted-light hover:text-primary dark:text-text-muted-dark transition-colors"><span
-                            class="material-icons-outlined">email</span></a>
-                </div>
-            </div>
-        </div>
+    <footer
+        class="bg-surface-light dark:bg-card-dark border-t border-border-light dark:border-border-dark py-8 text-center mt-auto">
+        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">© 2026 E-Commercely. All rights reserved.
+        </p>
     </footer>
 
-    <script src="app.js" type="module"></script>
 </body>
 
 </html>

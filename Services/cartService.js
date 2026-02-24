@@ -17,16 +17,13 @@ class CartService {
 
   addToCart(productId, name, price, quantity, color, size, image) {
     const cart = this.getCartItems();
-    // Create a unique ID for the cart item based on product ID, color, and size
     const cartItemId = `${productId}-${color}-${size}`;
 
     const existingItemIndex = cart.findIndex((item) => item.id === cartItemId);
 
     if (existingItemIndex > -1) {
-      // If item with same features exists, increment quantity
       cart[existingItemIndex].quantity += quantity;
     } else {
-      // Add new item
       const newItem = new CartItem(
         cartItemId,
         productId,
