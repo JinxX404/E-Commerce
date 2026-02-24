@@ -16,6 +16,11 @@ class HomeController {
     this.currentPriceRange = "all";
     this.currentSize = "all";
     this.currentSort = "default";
+
+    // Hero Slider Properties
+    this.sliderCurrentIndex = 0;
+    this.sliderInterval = null;
+    this.sliderProducts = [];
   }
 
   userWelcome() {
@@ -284,6 +289,160 @@ class HomeController {
     this.setupCategories();
   }
 
+  async loadHeroSlider() {
+    try {
+      // Fetch a larger pool of products to feature.
+      const response = await this.productService.getProductsByPage(1, 20);
+      let products = response.products || response;
+
+      // Ensure we have products
+      if (!products || products.length === 0) return;
+
+      // Randomize the products and select up to 5
+      const shuffled = [...products].sort(() => 0.5 - Math.random());
+      this.sliderProducts = shuffled.slice(0, 5);
+
+      this.renderSlider();
+      this.setupSliderControls();
+      this.startAutoSlide();
+    } catch (error) {
+      console.error("Failed to load hero slider products:", error);
+    }
+  }
+
+  renderSlider() {
+    const track = document.getElementById("hero-slider-track");
+    const dotsContainer = document.getElementById("slider-dots");
+    if (!track || !dotsContainer) return;
+
+    track.innerHTML = "";
+    dotsContainer.innerHTML = "";
+
+    const baseUrl = "https://developerapis.vercel.app/";
+
+    this.sliderProducts.forEach((product, index) => {
+      // Determine background style. We use a dark gradient overlay.
+      const bgImage = `url('${baseUrl + product.image}')`;
+
+      // Create slide
+      const slide = document.createElement("div");
+      slide.className = "min-w-full h-full relative flex-shrink-0";
+      slide.innerHTML = `
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: ${bgImage};"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/30 dark:from-gray-900/90 dark:to-gray-900/50 z-10"></div>
+        <div class="absolute inset-0 z-20 flex flex-col justify-center px-12 md:px-20 text-white">
+          <span class="text-indigo-300 font-semibold tracking-wider uppercase mb-2">Featured</span>
+          <h1 class="text-3xl md:text-5xl font-bold mb-4 line-clamp-2 max-w-2xl">${product.name}</h1>
+          <p class="text-gray-200 mb-6 max-w-md line-clamp-2">${product.description}</p>
+          <div class="flex items-center gap-4">
+             <span class="text-2xl font-bold text-white">$${parseFloat(product.price).toFixed(2)}</span>
+             <button data-id="${product.id}" class="view-product-btn w-fit bg-primary hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-medium transition-all shadow-lg hover:shadow-indigo-500/30">
+               Shop Now
+             </button>
+          </div>
+        </div>
+      `;
+      track.appendChild(slide);
+
+      // Create dot
+      const dot = document.createElement("button");
+      dot.className = `w-3 h-3 rounded-full transition-colors ${index === 0 ? "bg-white" : "bg-white/50 hover:bg-white"}`;
+      dot.dataset.index = index;
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  setupSliderControls() {
+    const track = document.getElementById("hero-slider-track");
+    const prevBtn = document.getElementById("slider-prev");
+    const nextBtn = document.getElementById("slider-next");
+    const dots = document.querySelectorAll("#slider-dots button");
+    const sliderContainer =
+      document.getElementById("hero-slider-track").parentElement;
+
+    if (!track) return;
+
+    const updateSlider = () => {
+      // Move track
+      track.style.transform = `translateX(-${this.sliderCurrentIndex * 100}%)`;
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        if (index === this.sliderCurrentIndex) {
+          dot.className = "w-3 h-3 rounded-full transition-colors bg-white";
+        } else {
+          dot.className =
+            "w-3 h-3 rounded-full transition-colors bg-white/50 hover:bg-white";
+        }
+      });
+    };
+
+    const nextSlide = () => {
+      this.sliderCurrentIndex =
+        (this.sliderCurrentIndex + 1) % this.sliderProducts.length;
+      updateSlider();
+    };
+
+    const prevSlide = () => {
+      this.sliderCurrentIndex =
+        (this.sliderCurrentIndex - 1 + this.sliderProducts.length) %
+        this.sliderProducts.length;
+      updateSlider();
+    };
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        nextSlide();
+        this.resetAutoSlide();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        prevSlide();
+        this.resetAutoSlide();
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", (e) => {
+        this.sliderCurrentIndex = parseInt(e.target.dataset.index);
+        updateSlider();
+        this.resetAutoSlide();
+      });
+    });
+
+    // Pause auto-slide on hover
+    if (sliderContainer) {
+      sliderContainer.addEventListener("mouseenter", () =>
+        this.stopAutoSlide(),
+      );
+      sliderContainer.addEventListener("mouseleave", () =>
+        this.startAutoSlide(),
+      );
+    }
+  }
+
+  startAutoSlide() {
+    if (this.sliderProducts.length > 1) {
+      this.sliderInterval = setInterval(() => {
+        const nextBtn = document.getElementById("slider-next");
+        if (nextBtn) nextBtn.click();
+      }, 5000); // 5 seconds
+    }
+  }
+
+  stopAutoSlide() {
+    if (this.sliderInterval) {
+      clearInterval(this.sliderInterval);
+    }
+  }
+
+  resetAutoSlide() {
+    this.stopAutoSlide();
+    this.startAutoSlide();
+  }
+
   updateCartIcon() {
     const cartIconCount = document.getElementById("cart-icon-count");
     if (cartIconCount) {
@@ -301,7 +460,14 @@ class HomeController {
       await this.loadCategories();
       await this.loadFilters();
       this.setupFilters();
+
+      // Load hero slider before products to ensure viewProduct btn listeners attach
+      await this.loadHeroSlider();
+
       await this.loadHomeProducts();
+
+      // View product attachments need to run again after slider renders
+      // because loadHomeProducts() also calls viewProduct() but slider might render after.
       this.viewProduct();
       this.quickAdd();
     } catch (error) {
