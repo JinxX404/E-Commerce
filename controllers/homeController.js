@@ -121,9 +121,12 @@ class HomeController {
   }
 
   viewProduct() {
-    const viewProductBtns = document.querySelectorAll(".view-product-btn");
+    const viewProductBtns = document.querySelectorAll(
+      ".view-product-btn:not([data-listener])",
+    );
     if (!viewProductBtns) return;
     viewProductBtns.forEach((btn) => {
+      btn.setAttribute("data-listener", "true");
       btn.addEventListener("click", () => {
         const productId = btn.dataset.id;
         window.location.href = `../pages/product.html?id=${productId}`;
@@ -132,9 +135,12 @@ class HomeController {
   }
 
   quickAdd() {
-    const quickAddBtns = document.querySelectorAll(".quick-add-btn");
+    const quickAddBtns = document.querySelectorAll(
+      ".quick-add-btn:not([data-listener])",
+    );
     if (!quickAddBtns) return;
     quickAddBtns.forEach((btn) => {
+      btn.setAttribute("data-listener", "true");
       btn.addEventListener("click", async (e) => {
         // Prevent event from bubbling if the card itself was ever clickable
         e.stopPropagation();
@@ -461,9 +467,6 @@ class HomeController {
       await this.loadHeroSlider();
 
       await this.loadHomeProducts();
-
-      this.viewProduct();
-      this.quickAdd();
     } catch (error) {
       console.error("Home initialization error:", error);
       this.notificationService.showToast("Failed to load store data", "error");
