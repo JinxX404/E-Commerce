@@ -20,7 +20,6 @@
       <div class="flex justify-between h-16 items-center">
         <div class="flex items-center gap-8">
           <a class="text-xl font-bold text-primary tracking-tight" href="home.html">E-Commercely</a>
-          <p id="user-welcome"></p>
           <div class="hidden md:flex space-x-6">
             <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
               href="home.html">Home</a>
@@ -29,26 +28,27 @@
           </div>
         </div>
         <div class="flex items-center space-x-6">
-          <button
+          <a href="cart.html"
             class="relative p-2 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
-            <span class="material-icons-outlined">shopping_cart</span>
-            <span
-              class="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-surface-dark"></span>
-          </button>
-          <div class="flex items-center space-x-3">
-            <div
-              class="h-8 w-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-primary font-bold text-sm">
-              A
+            <span class="material-icons-outlined text-2xl">shopping_cart</span>
+            <span id="cart-icon-count"
+              class="absolute top-1 right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full ring-2 ring-white dark:ring-surface-dark">0</span>
+          </a>
+          <div class="relative">
+            <button id="user-menu-btn" class="flex items-center focus:outline-none">
+              <div id="user-avatar"
+                class="h-8 w-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-primary font-bold text-sm uppercase transition-transform hover:scale-105 cursor-pointer">
+                A
+              </div>
+            </button>
+            <div id="user-dropdown"
+              class="absolute right-0 mt-2 w-32 bg-surface-light dark:bg-surface-dark rounded-md shadow-lg py-1 border border-border-light dark:border-border-dark hidden z-50">
+              <button id="logout"
+                class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                Logout
+              </button>
             </div>
           </div>
-          <button id="logout"
-            class="text-sm font-medium text-red-500 hover:text-red-600 dark:hover:text-red-400 transition-colors">
-            Logout
-          </button>
-          <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400"
-            onclick="document.documentElement.classList.toggle('dark')">
-            <span class="material-icons-outlined">dark_mode</span>
-          </button>
         </div>
       </div>
     </div>

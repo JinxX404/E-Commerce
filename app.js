@@ -8,6 +8,7 @@ import User from "./models/user.js";
 import AuthService from "./services/authService.js";
 import createProductCard from "./components/productCard.js";
 import ProductService from "./services/productService.js";
+import CartService from "./services/cartService.js";
 
 // const storageService = new StorageService();
 // const user = new User("Moataz", "moatazmuhammedmuhammed@gmail.com", "1234");

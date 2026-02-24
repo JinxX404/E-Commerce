@@ -17,6 +17,11 @@ tailwind.config = {
         "text-dark": "#F3F4F6",
         "text-muted-light": "#6B7280",
         "text-muted-dark": "#9CA3AF",
+        "primary-hover": "#4338CA",
+        "text-main-light": "#111827",
+        "text-main-dark": "#F9FAFB",
+        "text-sub-light": "#6B7280",
+        "text-sub-dark": "#9CA3AF",
       },
       fontFamily: {
         display: ["Inter", "sans-serif"],
@@ -26,6 +31,8 @@ tailwind.config = {
       borderRadius: {
         DEFAULT: "0.5rem",
         xl: "1rem",
+        xl: "1rem",
+        "2xl": "1.5rem",
       },
     },
   },

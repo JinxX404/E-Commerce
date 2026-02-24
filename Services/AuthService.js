@@ -20,19 +20,25 @@ class AuthService {
     if (userExists) {
       throw new Error("User already exists");
     }
-    if (
-      (await validateEmail(user.email)) &&
-      (await validatePassword(user.password))
-    ) {
-      const hashedPassword = await hashPassword(user.password);
-      const newUser = new User(user.name, user.email, hashedPassword);
-      this.userRepository.save(newUser);
-      console.log(
-        "Register Function on AuthService: User registered successfully",
-      );
-    } else {
-      throw new Error("Invalid email or password");
+
+    const isValidEmail = await validateEmail(user.email);
+    if (!isValidEmail) {
+      throw new Error("Please enter a valid email address.");
     }
+
+    const isValidPassword = await validatePassword(user.password);
+    if (!isValidPassword) {
+      throw new Error(
+        "Password must be at least 8 characters long, and include an uppercase letter, lowercase letter, number, and special character.",
+      );
+    }
+
+    const hashedPassword = await hashPassword(user.password);
+    const newUser = new User(user.name, user.email, hashedPassword);
+    this.userRepository.save(newUser);
+    console.log(
+      "Register Function on AuthService: User registered successfully",
+    );
   }
 
   async signIn(user) {

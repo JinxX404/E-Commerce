@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Your Shopping Cart</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="TailwindConfig.js"></script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-body min-h-screen flex flex-col transition-colors duration-300">
+    <nav
+        class="sticky top-0 z-50 bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-8">
+                    <a class="text-xl font-bold text-primary tracking-tight" href="home.html">E-Commercely</a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="relative group cursor-pointer">
+                        <span
+                            class="material-icons text-text-sub-light dark:text-text-sub-dark hover:text-primary transition-colors">shopping_cart</span>
+                        <span id="cart-icon-count"
+                            class="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </div>
+                    <div class="flex items-center space-x-4 border-l border-border-light dark:border-border-dark pl-6">
+                        <div class="relative">
+                            <button id="user-menu-btn" class="flex items-center focus:outline-none">
+                                <div id="user-avatar"
+                                    class="h-8 w-8 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-primary font-bold text-sm uppercase transition-transform hover:scale-105 cursor-pointer">
+                                    A</div>
+                            </button>
+                            <div id="user-dropdown"
+                                class="absolute right-0 mt-2 w-32 bg-surface-light dark:bg-surface-dark rounded-md shadow-lg py-1 border border-border-light dark:border-border-dark hidden z-50">
+                                <button id="logout"
+                                    class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-text-main-light dark:text-text-main-dark">Your Shopping Cart</h1>
+            <p id="cart-header-count" class="mt-2 text-text-sub-light dark:text-text-sub-dark"></p>
+        </header>
+        <div class="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
+            <section
+                class="lg:col-span-8 bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark overflow-hidden">
+                <ul id="cart-items-container" class="divide-y divide-border-light dark:divide-border-dark" role="list">
+                </ul>
+            </section>
+            <section
+                class="mt-16 rounded-xl bg-surface-light dark:bg-surface-dark px-4 py-6 shadow-sm border border-border-light dark:border-border-dark sm:p-6 lg:col-span-4 lg:mt-0 lg:p-8 sticky top-24">
+                <h2 class="text-lg font-medium text-text-main-light dark:text-text-main-dark">Order summary</h2>
+                <dl class="mt-6 space-y-4">
+                    <div
+                        class="flex items-center justify-between border-b border-border-light dark:border-border-dark pb-4">
+                        <dt class="text-sm text-text-sub-light dark:text-text-sub-dark">Subtotal</dt>
+                        <dd id="summary-subtotal"
+                            class="text-sm font-medium text-text-main-light dark:text-text-main-dark">$0.00</dd>
+                    </div>
+                    <div class="flex items-center justify-between pt-4">
+                        <dt class="text-base font-bold text-text-main-light dark:text-text-main-dark">Total Amount</dt>
+                        <dd id="summary-total" class="text-xl font-bold text-primary">$0.00</dd>
+                    </div>
+                    <p id="summary-includes"
+                        class="text-xs text-text-sub-light dark:text-text-sub-dark mt-1 text-right">Includes $0.00 item
+                        total</p>
+                </dl>
+                <div class="mt-8">
+                    <button id="checkout-btn"
+                        class="w-full rounded-md border border-transparent bg-primary py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 transition-all duration-200 shadow-indigo-500/20"
+                        type="submit">
+                        Buy Now
+                    </button>
+                </div>
+                <div class="mt-6 flex justify-center text-center text-sm text-text-sub-light dark:text-text-sub-dark">
+                    <p>
+                        or
+                        <a class="font-medium text-primary hover:text-primary-hover" href="home.html">
+                            Continue Shopping
+                            <span aria-hidden="true"> →</span>
+                        </a>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="mt-auto bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <p class="text-sm text-text-sub-light dark:text-text-sub-dark">
+                © 2026 E-Commercely Inc. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <script src="../controllers/cartController.js" type="module"></script>
+</body>
+
+</html>

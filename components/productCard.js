@@ -204,7 +204,8 @@ function createProductCard(product) {
 
       <!-- Quick Add -->
       <button 
-        class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-300"
+        data-id="${product.id}"
+        class="quick-add-btn bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-300"
       >
         Add
       </button>
